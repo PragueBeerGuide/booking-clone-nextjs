@@ -3,8 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import type { Result } from "../../types/typings"
-
 type Props = {
   searchParams: SearchParams;
 };
@@ -21,7 +19,7 @@ export type SearchParams = {
 async function SearchPage({ searchParams }: Props) {
   if (!searchParams.url) return notFound();
 
-  const results:Result = await fetchResults(searchParams);
+  const results = await fetchResults(searchParams);
 
   if (!results) return <div>No results...</div>;
 

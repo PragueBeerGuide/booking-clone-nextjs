@@ -1,5 +1,5 @@
 import { SearchParams } from "@/app/search/page";
-import { Result } from "@/typings";
+import { Result } from "@/types/typings";
 
 export async function fetchResults(searchParams: SearchParams) {
   const username = process.env.OXYLABS_USERNAME;
