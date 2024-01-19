@@ -23,11 +23,13 @@ export default function Home() {
         <div className="flex space-x-4 py-5 overflow-x-scroll">
         {trending_data.map(item => (
           <div key={item.id} className="space-y-1 shrink-0 cursor-pointer">
-            <img 
-              src={item.src} 
-              alt=""
-              className="w-80 h-72 object-cover rounded-lg pb-2"
-            />
+            <div className="relative w-80 h-72 object-cover rounded-t-lg pb-2">
+              <Image 
+                src={item.src} 
+                alt=""
+                fill
+              />
+            </div>
             <p className="font-bold">{item.title}</p>
             <p>{item.location}</p>
             <p className="font-light text-sm">{item.description}</p>
