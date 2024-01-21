@@ -5,17 +5,17 @@ import SearchForm from '@/components/SearchForm'
 export default function Home() {
   return (
     <main className="bg-[#013B94]">
-      <section className="max-w-7xl mx-auto p-6">
+      <section className="max-w-7xl mx-auto p-5 pt-8">
         <h2 className="text-white text-5xl font-bold">Find your Next Stay</h2>
         <h3 className="text-white text-xl py-5">Search for low prices on hotels, homes and much more...</h3>
       </section>
 
       {/* SearchForm */}
-      <section className="m-4 mt-0 -mb-14 px-2 lg:px-4">
+      <section className="m-3 mt-0 -mb-[60px] px-2 lg:px-4">
         <SearchForm />
       </section>
 
-      <section className="mx-auto max-w-7xl mt-10 p-6 bg-white rounded-t-lg">
+      <section className="mx-auto max-w-7xl mt-10 p-6 bg-white rounded-lg">
         <div className="pt-5">
           <h3 className="text-xl font-bold">Trending destinations</h3>
           <p className="font-light">Most popular choices for travellers from all around the world</p>

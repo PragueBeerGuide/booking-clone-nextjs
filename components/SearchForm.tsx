@@ -94,15 +94,14 @@ function SearchForm() {
             name="location"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white flex">
-                  Location
-                  <BedDoubleIcon className="ml-2 h-4 w-4 text-white" />
-                </FormLabel>
 
                 <FormMessage />
 
                 <FormControl>
-                  <Input placeholder="London, UK" {...field} />
+                  <div className="relative w-full lg:w-[300px] flex justify-start items-center text-left font-normal">
+                    <BedDoubleIcon className="h-4 w-4 absolute left-4" />
+                    <Input className="pl-10 placeholder:text-black focus:placeholder:opacity-50" placeholder="Where are you going?" {...field} />
+                  </div>
                 </FormControl>
               </FormItem>
             )}
@@ -115,7 +114,6 @@ function SearchForm() {
             name="dates"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                <FormLabel className="text-white">Dates</FormLabel>
                 <FormMessage />
 
                 <Popover>
@@ -126,11 +124,11 @@ function SearchForm() {
                         name="dates"
                         variant={"outline"}
                         className={cn(
-                          "w-full lg:w-[300px] justify-start text-left font-normal",
+                          "w-full lg:w-[300px] justify-start text-left font-normal ",
                           !field.value.from && "text-muted-foreground"
                         )}
                       >
-                        <CalendarIcon className="mr-3 h-4 w-4 opacity-50" />
+                        <CalendarIcon className="mr-3 h-4 w-4" />
                         {field.value?.from ? (
                           field.value?.to ? (
                             <>
