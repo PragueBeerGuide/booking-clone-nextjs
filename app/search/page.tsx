@@ -24,7 +24,7 @@ async function SearchPage({ searchParams }: Props) {
   if (!results) return <div>No results...</div>;
 
   return (
-    <section>
+    <section className="bg-white">
       <div className="mx-auto max-w-7xl p-6 lg:px-8">
         <h1 className="text-4xl font-bold pb-3">Your Trip Results</h1>
 

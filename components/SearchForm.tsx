@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
-import { BedDoubleIcon, CalendarIcon } from "lucide-react";
+import { BedDoubleIcon, CalendarIcon, UserRoundIcon } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { format } from "date-fns";
 
@@ -17,9 +17,15 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+
+import {
+  Card,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card"
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
 import { Calendar } from "./ui/calendar";
+import LocationPicker from "./LocationPicker";
 
 export const formSchema = z.object({
   location: z.string().min(2).max(50),
@@ -88,25 +94,9 @@ function SearchForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col lg:flex-row lg:max-w-6xl lg:mx-auto items-center justify-center space-x-0 lg:space-x-2 space-y-4 lg:space-y-0 rounded-lg"
       >
-        <div className="grid w-full lg:max-w-sm items-center gap-1.5">
-          <FormField
-            control={form.control}
-            name="location"
-            render={({ field }) => (
-              <FormItem>
-
-                <FormMessage />
-
-                <FormControl>
-                  <div className="relative w-full lg:w-[300px] flex justify-start items-center text-left font-normal">
-                    <BedDoubleIcon className="h-4 w-4 absolute left-4" />
-                    <Input className="pl-10 placeholder:text-black focus:placeholder:opacity-50" placeholder="Where are you going?" {...field} />
-                  </div>
-                </FormControl>
-              </FormItem>
-            )}
-          />
-        </div>
+        <LocationPicker 
+        control={form.control}
+        />
 
         <div className="grid w-full lg:max-w-sm flex-1 items-center gap-1.5">
           <FormField
@@ -169,65 +159,62 @@ function SearchForm() {
           />
         </div>
 
-        <div>
-          <div className="flex w-full items-center space-x-2">
-            <div className="grid items-center flex-1">
-              <FormField
-                control={form.control}
-                name="adults"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel className="text-white">Adults</FormLabel>
-                    <FormMessage />
-                    <FormControl>
-                      <Input type="number" placeholder="Adults" {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <div className="grid items-center flex-1">
-              <FormField
-                control={form.control}
-                name="children"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel className="text-white">Children</FormLabel>
-                    <FormMessage />
-                    <FormControl>
-                      <Input type="number" placeholder="Children" {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <div className="grid items-center flex-1">
-              <FormField
-                control={form.control}
-                name="rooms"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel className="text-white">Rooms</FormLabel>
-                    <FormMessage />
-                    <FormControl>
-                      <Input type="number" placeholder="rooms" {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-            </div>
-          </div>
-
-          <div className="flex w-full items-center space-x-2">
-            <Button type="submit" className="bg-blue-500 text-base">
-              Search
-            </Button>
+        <div className="flex w-full items-center space-x-2">
+          <div className="grid items-center flex-1">
+            <FormField
+              control={form.control}
+              name="adults"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <FormLabel className="text-white">Adults</FormLabel>
+                  <FormMessage />
+                  <FormControl>
+                    <Input type="number" placeholder="Adults" {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+    
+            <FormField
+              control={form.control}
+              name="children"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <FormLabel className="text-white">Children</FormLabel>
+                  <FormMessage />
+                  <FormControl>
+                    <Input type="number" placeholder="Children" {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+        
+            <FormField
+              control={form.control}
+              name="rooms"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <FormLabel className="text-white">Rooms</FormLabel>
+                  <FormMessage />
+                  <FormControl>
+                    <Input type="number" placeholder="rooms" {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
           </div>
         </div>
+
+        <div className="flex w-full items-center space-x-2">
+          <Button type="submit" className="bg-blue-500 text-base">
+            Search
+          </Button>
+        </div>
+          
       </form>
     </Form>
+
+    
   );
 }
 
