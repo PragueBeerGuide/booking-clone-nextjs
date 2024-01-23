@@ -123,23 +123,29 @@ function SearchForm() {
                         id="date"
                         name="dates"
                         variant={"outline"}
-                        className={cn(
-                          "w-full lg:w-[300px] justify-start text-left font-normal ",
-                          !field.value.from && "text-muted-foreground"
-                        )}
+                        className="w-full lg:w-[300px] justify-start text-left font-normal"
                       >
                         <CalendarIcon className="mr-3 h-4 w-4" />
                         {field.value?.from ? (
                           field.value?.to ? (
                             <>
-                              {format(field.value?.from, "LLL dd, y")} -{" "}
+                              {format(field.value?.from, "LLL dd, y")}
+                              <span className="px-2">—</span>
                               {format(field.value?.to, "LLL dd, y")}
                             </>
                           ) : (
-                            format(field.value?.from, "LLL dd, y")
+                            <>
+                              {format(field.value?.from, "LLL dd, y")}
+                              <span className="px-2">—</span>
+                              <span>Check-out date</span>
+                            </>
                           )
                         ) : (
-                          <span>Select your dates</span>
+                          <div> 
+                            <span>Check-in date</span>
+                            <span className="px-2">—</span>
+                            <span>Check-out date</span>
+                          </div>
                         )}
                       </Button>
                     </FormControl>
@@ -163,56 +169,58 @@ function SearchForm() {
           />
         </div>
 
-        <div className="flex w-full items-center space-x-2">
-          <div className="grid items-center flex-1">
-            <FormField
-              control={form.control}
-              name="adults"
-              render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel className="text-white">Adults</FormLabel>
-                  <FormMessage />
-                  <FormControl>
-                    <Input type="number" placeholder="Adults" {...field} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
+        <div>
+          <div className="flex w-full items-center space-x-2">
+            <div className="grid items-center flex-1">
+              <FormField
+                control={form.control}
+                name="adults"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel className="text-white">Adults</FormLabel>
+                    <FormMessage />
+                    <FormControl>
+                      <Input type="number" placeholder="Adults" {...field} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <div className="grid items-center flex-1">
+              <FormField
+                control={form.control}
+                name="children"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel className="text-white">Children</FormLabel>
+                    <FormMessage />
+                    <FormControl>
+                      <Input type="number" placeholder="Children" {...field} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <div className="grid items-center flex-1">
+              <FormField
+                control={form.control}
+                name="rooms"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel className="text-white">Rooms</FormLabel>
+                    <FormMessage />
+                    <FormControl>
+                      <Input type="number" placeholder="rooms" {...field} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
           </div>
 
-          <div className="grid items-center flex-1">
-            <FormField
-              control={form.control}
-              name="children"
-              render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel className="text-white">Children</FormLabel>
-                  <FormMessage />
-                  <FormControl>
-                    <Input type="number" placeholder="Children" {...field} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-          </div>
-
-          <div className="grid items-center flex-1">
-            <FormField
-              control={form.control}
-              name="rooms"
-              render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel className="text-white">Rooms</FormLabel>
-                  <FormMessage />
-                  <FormControl>
-                    <Input type="number" placeholder="rooms" {...field} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-          </div>
-
-          <div className="mt-auto">
+          <div className="flex w-full items-center space-x-2">
             <Button type="submit" className="bg-blue-500 text-base">
               Search
             </Button>
