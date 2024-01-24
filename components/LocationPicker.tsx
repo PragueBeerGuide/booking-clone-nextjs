@@ -1,13 +1,14 @@
 import { Input } from "@/components/ui/input";
 import {
-    FormControl,
-    FormField,
-    FormItem,
-    FormMessage,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
   } from "@/components/ui/form";
 
 import { BedDoubleIcon } from "lucide-react";
 
+// TODO: fix the Type of props
 function LocationPicker({control}:any) {
   return (
     <div className="grid w-full lg:max-w-sm items-center gap-1.5">

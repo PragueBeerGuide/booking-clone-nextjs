@@ -8,22 +8,11 @@ import { Button } from "@/components/ui/button";
 
 import {
   Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
 } from "@/components/ui/form";
-
-import {
-  Card,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input";
 
 import LocationPicker from "./LocationPicker";
 import DatePicker from "./DatePicker";
+import GuestsPicker from "./GuestsPicker";
 
 export const formSchema = z.object({
   location: z.string().min(2).max(50),
@@ -98,53 +87,9 @@ function SearchForm() {
         <DatePicker
         control={form.control}
         />
-        
-
-        <div className="flex w-full items-center space-x-2">
-          <div className="grid items-center flex-1">
-            <FormField
-              control={form.control}
-              name="adults"
-              render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel className="text-white">Adults</FormLabel>
-                  <FormMessage />
-                  <FormControl>
-                    <Input type="number" placeholder="Adults" {...field} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-    
-            <FormField
-              control={form.control}
-              name="children"
-              render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel className="text-white">Children</FormLabel>
-                  <FormMessage />
-                  <FormControl>
-                    <Input type="number" placeholder="Children" {...field} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-        
-            <FormField
-              control={form.control}
-              name="rooms"
-              render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel className="text-white">Rooms</FormLabel>
-                  <FormMessage />
-                  <FormControl>
-                    <Input type="number" placeholder="rooms" {...field} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-          </div>
-        </div>
+        <GuestsPicker
+        control={form.control}
+        />
 
         <div className="flex w-full items-center space-x-2">
           <Button type="submit" className="bg-blue-500 text-base">

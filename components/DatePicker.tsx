@@ -12,6 +12,7 @@ import { format } from "date-fns";
 
 import { CalendarIcon } from "lucide-react";
 
+// TODO: fix the Type of props
 function DatePicker({control}:any) {
   return (
     <div className="grid w-full lg:max-w-sm flex-1 items-center gap-1.5">
