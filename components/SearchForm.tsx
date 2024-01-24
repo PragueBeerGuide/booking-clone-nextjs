@@ -4,8 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Button } from "@/components/ui/button";
 
+import { Button } from "@/components/ui/button";
 import {
   Form,
 } from "@/components/ui/form";
@@ -81,20 +81,22 @@ function SearchForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col lg:flex-row lg:max-w-6xl lg:mx-auto items-center justify-center space-x-0 lg:space-x-2 space-y-4 lg:space-y-0 rounded-lg"
       >
-        <LocationPicker 
-        control={form.control}
-        />
-        <DatePicker
-        control={form.control}
-        />
-        <GuestsPicker
-        control={form.control}
-        />
+        <div className="flex flex-col md:flex-row bg-orange-300 p-1 gap-1 rounded-lg">
+          <LocationPicker 
+          control={form.control}
+          />
+          <DatePicker
+          control={form.control}
+          />
+          <GuestsPicker
+          control={form.control}
+          />
 
-        <div className="flex w-full items-center space-x-2">
-          <Button type="submit" className="bg-blue-500 text-base">
-            Search
-          </Button>
+          <div className="flex">
+            <Button type="submit" className="bg-blue-500 hover:bg-blue-700 text-base grow">
+              Search
+            </Button>
+          </div>
         </div>
           
       </form>
