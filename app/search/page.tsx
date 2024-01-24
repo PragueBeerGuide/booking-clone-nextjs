@@ -59,6 +59,7 @@ async function SearchPage({ searchParams }: Props) {
                 <div>
                   <Link
                     href={item.link}
+                    target="_blank"
                     className="font-bold text-blue-500 hover:text-blue-600 hover:underline"
                   >
                     {item.title}

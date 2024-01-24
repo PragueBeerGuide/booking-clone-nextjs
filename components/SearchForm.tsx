@@ -5,9 +5,6 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
-import { BedDoubleIcon, CalendarIcon, UserRoundIcon } from "lucide-react";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { format } from "date-fns";
 
 import {
   Form,
@@ -24,8 +21,9 @@ import {
   CardFooter,
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input";
-import { Calendar } from "./ui/calendar";
+
 import LocationPicker from "./LocationPicker";
+import DatePicker from "./DatePicker";
 
 export const formSchema = z.object({
   location: z.string().min(2).max(50),
@@ -97,67 +95,10 @@ function SearchForm() {
         <LocationPicker 
         control={form.control}
         />
-
-        <div className="grid w-full lg:max-w-sm flex-1 items-center gap-1.5">
-          <FormField
-            control={form.control}
-            name="dates"
-            render={({ field }) => (
-              <FormItem className="flex flex-col">
-                <FormMessage />
-
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <FormControl>
-                      <Button
-                        id="date"
-                        name="dates"
-                        variant={"outline"}
-                        className="w-full lg:w-[300px] justify-start text-left font-normal"
-                      >
-                        <CalendarIcon className="mr-3 h-4 w-4" />
-                        {field.value?.from ? (
-                          field.value?.to ? (
-                            <>
-                              {format(field.value?.from, "LLL dd, y")}
-                              <span className="px-2">—</span>
-                              {format(field.value?.to, "LLL dd, y")}
-                            </>
-                          ) : (
-                            <>
-                              {format(field.value?.from, "LLL dd, y")}
-                              <span className="px-2">—</span>
-                              <span>Check-out date</span>
-                            </>
-                          )
-                        ) : (
-                          <div> 
-                            <span>Check-in date</span>
-                            <span className="px-2">—</span>
-                            <span>Check-out date</span>
-                          </div>
-                        )}
-                      </Button>
-                    </FormControl>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      initialFocus
-                      mode="range"
-                      selected={field.value}
-                      defaultMonth={field.value.from}
-                      onSelect={field.onChange}
-                      numberOfMonths={2}
-                      disabled={(date) =>
-                        date < new Date(new Date().setHours(0, 0, 0, 0))
-                      }
-                    />
-                  </PopoverContent>
-                </Popover>
-              </FormItem>
-            )}
-          />
-        </div>
+        <DatePicker
+        control={form.control}
+        />
+        
 
         <div className="flex w-full items-center space-x-2">
           <div className="grid items-center flex-1">
