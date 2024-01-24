@@ -4,13 +4,15 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { format } from "date-fns";
 
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "./ui/calendar";
 
-import { CalendarIcon } from "lucide-react";
+import { UserRoundIcon } from "lucide-react";
+
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import NumberPicker from "./NumberPicker";
 
 // TODO: fix the Type of props
 function GuestsPickerNew({control}:any) {
@@ -18,7 +20,7 @@ function GuestsPickerNew({control}:any) {
     <div className="grid w-full lg:max-w-sm flex-1 items-center md:items-stretch gap-1.5">
       <FormField
         control={control}
-        name="dates"
+        name="guests"
         render={({ field }) => (
           <FormItem className="flex flex-col">
             <FormMessage />
@@ -27,48 +29,57 @@ function GuestsPickerNew({control}:any) {
               <PopoverTrigger asChild>
                 <FormControl>
                   <Button
-                    id="date"
-                    name="dates"
+                    id="guests"
+                    name="guests"
                     variant={"outline"}
                     className="w-full h-full lg:w-[300px] justify-start text-left font-normal hover:border-red-600"
                   >
-                    <CalendarIcon className="mr-3 h-4 w-4" />
-                    {field.value?.from ? (
-                      field.value?.to ? (
-                        <>
-                          {format(field.value?.from, "LLL dd, y")}
-                          <span className="px-2">—</span>
-                          {format(field.value?.to, "LLL dd, y")}
-                        </>
-                      ) : (
-                        <>
-                          {format(field.value?.from, "LLL dd, y")}
-                          <span className="px-2">—</span>
-                          <span>Check-out date</span>
-                        </>
-                      )
-                    ) : (
-                      <div> 
-                        <span>Check-in date</span>
-                        <span className="px-2">—</span>
-                        <span>Check-out date</span>
-                      </div>
-                    )}
+                    <UserRoundIcon className="mr-3 h-4 w-4" />
+                    <span>Adults</span>
+                    <span>Children</span>
+                    <span>Rooms</span>
                   </Button>
                 </FormControl>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start">
-                <Calendar
-                  initialFocus
-                  mode="range"
-                  selected={field.value}
-                  defaultMonth={field.value.from}
-                  onSelect={field.onChange}
-                  numberOfMonths={2}
-                  disabled={(date) =>
-                    date < new Date(new Date().setHours(0, 0, 0, 0))
-                  }
-                />
+              <PopoverContent className="w-72">
+                <div className="grid gap-4">
+                  <div className="space-y-2">
+                    <h4 className="font-medium leading-none">Guests</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Choose number of guests and rooms.
+                    </p>
+                  </div>
+                 
+                  <div className="grid grid-cols-1 gap-2">
+                    <NumberPicker
+                      title="Adults"
+                      defaultValue={1}
+                      min={1}
+                      max={30}
+                    />
+                    <NumberPicker
+                      title="Children"
+                      defaultValue={0}
+                      min={0}
+                      max={10}
+                    />
+                    <NumberPicker
+                      title="Rooms"
+                      defaultValue={0}
+                      min={0}
+                      max={30}
+                    />
+                  </div>
+
+                  <div>
+                    <Button 
+                      variant="outline" 
+                      className="text-blue-600 border-blue-600 w-full hover:text-blue-600 hover:bg-blue-600/10">
+                      Done
+                    </Button>
+                  </div>
+                  
+                </div>
               </PopoverContent>
             </Popover>
           </FormItem>

@@ -13,6 +13,7 @@ import {
 import LocationPicker from "./LocationPicker";
 import DatePicker from "./DatePicker";
 import GuestsPicker from "./GuestsPicker";
+import GuestsPickerNew from "./GuestsPickerNew";
 
 export const formSchema = z.object({
   location: z.string().min(2).max(50),
@@ -48,9 +49,9 @@ function SearchForm() {
         to: undefined,
       },
       guests: {
-      adults: "1",
-      children: "0",
-      rooms: "1",
+        adults: "1",
+        children: "0",
+        rooms: "1",
       },
     },
   });
@@ -92,7 +93,7 @@ function SearchForm() {
           <DatePicker
           control={form.control}
           />
-          <GuestsPicker
+          <GuestsPickerNew
           control={form.control}
           />
 
