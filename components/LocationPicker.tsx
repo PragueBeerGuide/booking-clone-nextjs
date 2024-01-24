@@ -11,7 +11,7 @@ import { BedDoubleIcon } from "lucide-react";
 // TODO: fix the Type of props
 function LocationPicker({control}:any) {
   return (
-    <div className="grid w-full lg:max-w-sm items-center gap-1.5">
+    <div className="grid w-full lg:max-w-sm items-center md:items-stretch gap-1.5">
       <FormField
         control={control}
         name="location"
@@ -21,10 +21,10 @@ function LocationPicker({control}:any) {
             <FormMessage />
 
             <FormControl>
-              <div className="relative w-full lg:w-[300px] flex justify-start items-center text-left font-normal">
+              <div className="relative w-full h-full lg:w-[300px] flex justify-start items-center text-left font-normal">
                 <BedDoubleIcon className="h-4 w-4 absolute left-4" />
                 <Input 
-                  className="pl-10 placeholder:text-black focus:placeholder:opacity-50" 
+                  className="h-full pl-10 placeholder:text-black hover:border-red-600 focus:placeholder:opacity-50 " 
                   placeholder="Where are you going?" 
                   {...field} 
                 />

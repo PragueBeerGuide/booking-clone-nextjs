@@ -4,16 +4,16 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import { format } from "date-fns";
 
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "./ui/calendar";
-import { format } from "date-fns";
 
 import { CalendarIcon } from "lucide-react";
 
 // TODO: fix the Type of props
-function DatePicker({control}:any) {
+function GuestsPickerNew({control}:any) {
   return (
     <div className="grid w-full lg:max-w-sm flex-1 items-center md:items-stretch gap-1.5">
       <FormField
@@ -78,4 +78,4 @@ function DatePicker({control}:any) {
   )
 }
 
-export default DatePicker
+export default GuestsPickerNew

@@ -13,7 +13,7 @@ export default function Home() {
       </section>
 
       {/* SearchForm */}
-      <section className='m-3 mt-0 -mb-[20px] px-2 lg:px-4'>
+      <section className='m-3 mt-0 -mb-[24px] px-2 lg:px-4'>
         <SearchForm />
       </section>
 

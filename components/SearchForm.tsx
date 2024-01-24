@@ -20,18 +20,20 @@ export const formSchema = z.object({
     from: z.date(),
     to: z.date(),
   }),
-  adults: z
-    .string()
-    .min(1, {
-      message: "Please select at least 1 adult",
-    })
-    .max(12, { message: "Max 12 adults occupancy" }),
-  children: z.string().min(0).max(12, {
-    message: "Max 12 children occupancy",
-  }),
-  rooms: z.string().min(1, {
-    message: "Please select at least 1 room",
-  }),
+  guests: z.object({
+    adults: z
+      .string()
+      .min(1, {
+        message: "Please select at least 1 adult",
+      })
+      .max(12, { message: "Max 12 adults occupancy" }),
+    children: z.string().min(0).max(12, {
+      message: "Max 12 children occupancy",
+    }),
+    rooms: z.string().min(1, {
+      message: "Please select at least 1 room",
+    }),
+  })
 });
 
 function SearchForm() {
@@ -45,9 +47,11 @@ function SearchForm() {
         from: undefined,
         to: undefined,
       },
+      guests: {
       adults: "1",
       children: "0",
       rooms: "1",
+      },
     },
   });
 
@@ -66,9 +70,9 @@ function SearchForm() {
 
     const url = new URL("https://www.booking.com/searchresults.html");
     url.searchParams.set("ss", values.location);
-    url.searchParams.set("group_adults", values.adults);
-    url.searchParams.set("group_children", values.children);
-    url.searchParams.set("no_rooms", values.rooms);
+    url.searchParams.set("group_adults", values.guests.adults);
+    url.searchParams.set("group_children", values.guests.children);
+    url.searchParams.set("no_rooms", values.guests.rooms);
     url.searchParams.set("checkin", checkin);
     url.searchParams.set("checkout", checkout);
 
@@ -93,7 +97,7 @@ function SearchForm() {
           />
 
           <div className="flex">
-            <Button type="submit" className="bg-blue-500 hover:bg-blue-700 text-base grow">
+            <Button type="submit" className="text-xl p-6 bg-blue-500 hover:bg-blue-700 grow">
               Search
             </Button>
           </div>
