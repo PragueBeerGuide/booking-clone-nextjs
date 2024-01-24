@@ -1,21 +1,36 @@
+'use client'
+
+import React, { useState } from 'react';
 import {
   FormControl,
   FormField,
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "@/components/ui/button";
 
-import { UserRoundIcon } from "lucide-react";
+import { UserRoundIcon, DotIcon } from "lucide-react";
 
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import NumberPicker from "./NumberPicker";
+import { GuestsData } from './NumberPicker';
 
 // TODO: fix the Type of props
 function GuestsPickerNew({control}:any) {
+
+  const [guestPickerOpen, setGuestPickerOpen] = useState(false);
+  const [guests, setGuests] = useState({
+    adults: 1,
+    children: 0,
+    rooms: 0
+  });
+
+  const handleGuestsChange = (guestsData: GuestsData) => {
+    setGuests({...guests, 
+      [guestsData.name]: guestsData.value
+    })
+  }
+
   return (
     <div className="grid w-full lg:max-w-sm flex-1 items-center md:items-stretch gap-1.5">
       <FormField
@@ -25,7 +40,7 @@ function GuestsPickerNew({control}:any) {
           <FormItem className="flex flex-col">
             <FormMessage />
 
-            <Popover>
+            <Popover open={guestPickerOpen} onOpenChange={setGuestPickerOpen}>
               <PopoverTrigger asChild>
                 <FormControl>
                   <Button
@@ -35,12 +50,15 @@ function GuestsPickerNew({control}:any) {
                     className="w-full h-full lg:w-[300px] justify-start text-left font-normal hover:border-red-600"
                   >
                     <UserRoundIcon className="mr-3 h-4 w-4" />
-                    <span>Adults</span>
-                    <span>Children</span>
-                    <span>Rooms</span>
+                    <span>{guests.adults} adults</span>
+                    <DotIcon />
+                    <span>{guests.children} {guests.children === 1 ? " child" : " children"}</span>
+                    <DotIcon />
+                    <span>{guests.rooms} rooms</span>
                   </Button>
                 </FormControl>
               </PopoverTrigger>
+
               <PopoverContent className="w-72">
                 <div className="grid gap-4">
                   <div className="space-y-2">
@@ -53,32 +71,42 @@ function GuestsPickerNew({control}:any) {
                   <div className="grid grid-cols-1 gap-2">
                     <NumberPicker
                       title="Adults"
+                      name="adults"
                       defaultValue={1}
                       min={1}
                       max={30}
+                      value={guests.adults}
+                      sendDataToParent={handleGuestsChange}
                     />
                     <NumberPicker
                       title="Children"
+                      name="children"
                       defaultValue={0}
                       min={0}
                       max={10}
+                      value={guests.children}
+                      sendDataToParent={handleGuestsChange}
                     />
                     <NumberPicker
                       title="Rooms"
+                      name="rooms"
                       defaultValue={0}
                       min={0}
                       max={30}
+                      value={guests.rooms}
+                      sendDataToParent={handleGuestsChange}
                     />
                   </div>
 
                   <div>
                     <Button 
+                      onClick={() => setGuestPickerOpen(false)}
                       variant="outline" 
-                      className="text-blue-600 border-blue-600 w-full hover:text-blue-600 hover:bg-blue-600/10">
-                      Done
+                      className="text-blue-600 border-blue-600 w-full hover:text-blue-600 hover:bg-blue-600/10"
+                    >
+                    Done
                     </Button>
                   </div>
-                  
                 </div>
               </PopoverContent>
             </Popover>
