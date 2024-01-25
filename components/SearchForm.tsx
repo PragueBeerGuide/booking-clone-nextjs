@@ -25,11 +25,11 @@ export const formSchema = z.object({
     adults: z
       .string()
       .min(1, {
-        message: "Please select at least 1 adult",
+        message: "Please type the name of your destination",
       })
-      .max(12, { message: "Max 12 adults occupancy" }),
-    children: z.string().min(0).max(12, {
-      message: "Max 12 children occupancy",
+      .max(30, { message: "Max 30 adults occupancy" }),
+    children: z.string().min(0).max(10, {
+      message: "Max 10 children occupancy",
     }),
     rooms: z.string().min(1, {
       message: "Please select at least 1 room",
@@ -86,7 +86,7 @@ function SearchForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col lg:flex-row lg:max-w-6xl lg:mx-auto items-center justify-center space-x-0 lg:space-x-2 space-y-4 lg:space-y-0 rounded-lg"
       >
-        <div className="flex flex-col md:flex-row bg-orange-300 p-1 gap-1 rounded-lg">
+        <div className="flex flex-col w-full lg:w-max lg:flex-row bg-orange-300 p-1 gap-1 rounded-lg">
           <LocationPicker 
           control={form.control}
           />
@@ -98,12 +98,12 @@ function SearchForm() {
           />
 
           <div className="flex">
-            <Button type="submit" className="text-xl p-6 bg-blue-500 hover:bg-blue-700 grow">
+            <Button type="submit" className="text-xl h-12 bg-blue-500 hover:bg-blue-700 grow">
               Search
             </Button>
           </div>
         </div>
-          
+
       </form>
     </Form>
 

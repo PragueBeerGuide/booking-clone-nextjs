@@ -21,7 +21,7 @@ function LocationPicker({control}:any) {
             <FormMessage />
 
             <FormControl>
-              <div className="relative w-full h-full lg:w-[300px] flex justify-start items-center text-left font-normal">
+              <div className="relative w-full h-12 lg:w-[300px] flex justify-start items-center text-left font-normal">
                 <BedDoubleIcon className="h-4 w-4 absolute left-4" />
                 <Input 
                   className="h-full pl-10 placeholder:text-black hover:border-red-600 focus:placeholder:opacity-50 " 

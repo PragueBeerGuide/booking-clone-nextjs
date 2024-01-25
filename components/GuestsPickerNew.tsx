@@ -47,7 +47,7 @@ function GuestsPickerNew({control}:any) {
                     id="guests"
                     name="guests"
                     variant={"outline"}
-                    className="w-full h-full lg:w-[300px] justify-start text-left font-normal hover:border-red-600"
+                    className="w-full h-12 lg:w-[300px] justify-start text-left font-normal hover:border-red-600"
                   >
                     <UserRoundIcon className="mr-3 h-4 w-4" />
                     <span>{guests.adults} adults</span>
