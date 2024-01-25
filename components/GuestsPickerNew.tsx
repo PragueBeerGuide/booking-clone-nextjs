@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FormControl,
   FormField,
@@ -21,13 +21,13 @@ export type GuestsData = {
 
 
 // TODO: fix the Type of props
-function GuestsPickerNew({control}:any) {
+function GuestsPickerNew({control, setValue}:any) {
 
   const [guestPickerOpen, setGuestPickerOpen] = useState(false);
   const [guests, setGuests] = useState({adults: 1, children: 0, rooms: 1});
 
   const handleChange = (guestsData: GuestsData) => {
-    setGuests({ ...guests, [guestsData.name]: guestsData.value });
+    setGuests({ ...guests, [guestsData.name]: guestsData.value })
   };
 
   return (
@@ -46,7 +46,7 @@ function GuestsPickerNew({control}:any) {
                     id="guests"
                     name="guests"
                     variant={"outline"}
-                    className="w-full h-12 lg:w-[300px] justify-start text-left font-normal hover:border-red-600"
+                    className="w-full h-12 lg:w-[340px] justify-start text-left font-normal hover:border-red-600"
                   >
                     <UserRoundIcon className="mr-3 h-5 w-5" />
                     <div className="flex flex-1 items-center">

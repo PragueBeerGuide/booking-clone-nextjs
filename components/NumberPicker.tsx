@@ -10,7 +10,7 @@ type NumberPickerProps = {
   value: number
   onInputChange: (value:number) => void
 }
-function NumberPicker({title, min = 0, max, value, onInputChange}: NumberPickerProps) {
+function NumberPicker({title, min = 0, max, value, onInputChange, ...field}: NumberPickerProps) {
 
   const handleIncrement = () => {
     onInputChange(value + 1);
