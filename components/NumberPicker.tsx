@@ -1,41 +1,24 @@
 'use client'
 
-import React, { useState } from 'react';
 import { PlusIcon, MinusIcon } from "@heroicons/react/20/solid"
 
 type NumberPickerProps = {
   title: string
   name: string
-  value: number
-  defaultValue?: number
   min?: number
   max?: number
-  sendDataToParent: (guestsData: GuestsData) => void
+  value: number
+  onInputChange: (value:number) => void
 }
-
-export type GuestsData = {
-  name : string, 
-  value : number
-}
-
-function NumberPicker({title, name, defaultValue = 0, min = 0, max, sendDataToParent}: NumberPickerProps) {
-  const [value, setValue] = useState(defaultValue);
+function NumberPicker({title, min = 0, max, value, onInputChange}: NumberPickerProps) {
 
   const handleIncrement = () => {
-      setValue(value + 1);
-      handleGuests()
+    onInputChange(value + 1);
   };
 
   const handleDecrement = () => {
-      setValue(value - 1);
-      handleGuests()
+    onInputChange(value - 1);
   };
-
-  const handleGuests = () => {
-    sendDataToParent({name: name, value: value})
-  }
-
-  console.log(name + ":", value)
 
   return (
     <div className='grid grid-cols-2 justify-between items-center'>

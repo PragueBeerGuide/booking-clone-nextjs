@@ -16,24 +16,26 @@ import GuestsPicker from "./GuestsPicker";
 import GuestsPickerNew from "./GuestsPickerNew";
 
 export const formSchema = z.object({
-  location: z.string().min(2).max(50),
+  location: z.string().min(2, {
+    message: "Please type the name of your destination",
+  }).max(50, {
+    message: "Maximum 50 characters allowed for search",
+  }),
   dates: z.object({
-    from: z.date(),
-    to: z.date(),
+    from: z.date({ required_error: "Please select a date for your trip"}),
+    to: z.date({ required_error: "Please select a date for your trip"}),
   }),
   guests: z.object({
     adults: z
       .string()
-      .min(1, {
-        message: "Please type the name of your destination",
-      })
+      .min(1)
       .max(30, { message: "Max 30 adults occupancy" }),
     children: z.string().min(0).max(10, {
       message: "Max 10 children occupancy",
     }),
     rooms: z.string().min(1, {
       message: "Please select at least 1 room",
-    }),
+    }).max(30),
   })
 });
 
@@ -79,8 +81,6 @@ function SearchForm() {
 
     router.push(`/search?url=${url.href}`);
   }
-
-  {console.log(form)}
 
   return (
     <Form {...form}>

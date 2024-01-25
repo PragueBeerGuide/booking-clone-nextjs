@@ -10,26 +10,25 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "@/components/ui/button";
 
-import { UserRoundIcon, DotIcon } from "lucide-react";
+import { UserRoundIcon, DotIcon, ChevronDownIcon } from "lucide-react";
 
 import NumberPicker from "./NumberPicker";
-import { GuestsData } from './NumberPicker';
+
+export type GuestsData = {
+  name : string, 
+  value : number
+}
+
 
 // TODO: fix the Type of props
 function GuestsPickerNew({control}:any) {
 
   const [guestPickerOpen, setGuestPickerOpen] = useState(false);
-  const [guests, setGuests] = useState({
-    adults: 1,
-    children: 0,
-    rooms: 0
-  });
+  const [guests, setGuests] = useState({adults: 1, children: 0, rooms: 1});
 
-  const handleGuestsChange = (guestsData: GuestsData) => {
-    setGuests({...guests, 
-      [guestsData.name]: guestsData.value
-    })
-  }
+  const handleChange = (guestsData: GuestsData) => {
+    setGuests({ ...guests, [guestsData.name]: guestsData.value });
+  };
 
   return (
     <div className="grid w-full lg:max-w-sm flex-1 items-center md:items-stretch gap-1.5">
@@ -50,20 +49,23 @@ function GuestsPickerNew({control}:any) {
                     className="w-full h-12 lg:w-[300px] justify-start text-left font-normal hover:border-red-600"
                   >
                     <UserRoundIcon className="mr-3 h-5 w-5" />
-                    <span>
-                      {guests.adults}
-                      {guests.adults === 1 ? " adult" : " adults"}
-                    </span>
-                    <DotIcon />
-                    <span>
-                      {guests.children}
-                      {guests.children === 1 ? " child" : " children"}
-                    </span>
-                    <DotIcon />
-                    <span>
-                      {guests.rooms}
-                      {guests.rooms === 1 ? " room" : " rooms"}
-                    </span>
+                    <div className="flex flex-1 items-center">
+                      <span>
+                        {guests.adults}
+                        {guests.adults === 1 ? " adult" : " adults"}
+                      </span>
+                      <DotIcon />
+                      <span>
+                        {guests.children}
+                        {guests.children === 1 ? " child" : " children"}
+                      </span>
+                      <DotIcon />
+                      <span>
+                        {guests.rooms}
+                        {guests.rooms === 1 ? " room" : " rooms"}
+                      </span>
+                    </div>
+                    <ChevronDownIcon className="h-5 w-5 ml-3" />
                   </Button>
                 </FormControl>
               </PopoverTrigger>
@@ -81,29 +83,32 @@ function GuestsPickerNew({control}:any) {
                     <NumberPicker
                       title="Adults"
                       name="adults"
-                      defaultValue={1}
                       min={1}
                       max={30}
-                      value={guests.adults}
-                      sendDataToParent={handleGuestsChange}
+                      value={guests.adults}  
+                      onInputChange={(value) => handleChange(
+                        {name: 'adults', value: value}
+                        )}            
                     />
                     <NumberPicker
                       title="Children"
                       name="children"
-                      defaultValue={0}
                       min={0}
-                      max={10}
-                      value={guests.children}
-                      sendDataToParent={handleGuestsChange}
+                      max={10}  
+                      value={guests.children}  
+                      onInputChange={(value) => handleChange(
+                        {name: 'children', value: value}
+                        )}             
                     />
                     <NumberPicker
                       title="Rooms"
                       name="rooms"
-                      defaultValue={1}
                       min={1}
                       max={30}
-                      value={guests.rooms}
-                      sendDataToParent={handleGuestsChange}
+                      value={guests.rooms}  
+                      onInputChange={(value) => handleChange(
+                        {name: 'rooms', value: value}
+                        )}              
                     />
                   </div>
 

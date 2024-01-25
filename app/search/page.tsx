@@ -51,7 +51,8 @@ async function SearchPage({ searchParams }: Props) {
                     <Image
                         src={item.url}
                         alt="image of property"
-                        fill
+                        fill={true}
+                        sizes="(max-width: 400px) 100vw, (max-width: 730px) 50vw, (max-width: 1050px) 33vw, 25vw"
                     />
                 </div>
 
