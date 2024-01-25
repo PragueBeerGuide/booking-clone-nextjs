@@ -30,7 +30,8 @@ export default function Home() {
             {trending_data.map((item) => (
               <div key={item.id} className='space-y-1 shrink-0 cursor-pointer'>
                 <div className='relative w-80 h-72 object-cover rounded-t-lg pb-2'>
-                  <Image src={item.src} alt='' fill />
+                  {/* nextjs automacally prepares different sizes of images and load a max size according to teh actual viewport */}
+                  <Image src={item.src} alt='' fill={true} sizes="(max-width: 400px) 100vw, (max-width: 730px) 50vw, (max-width: 1050px) 33vw, 25vw"/>
                 </div>
                 <p className='font-bold'>{item.title}</p>
                 <p>{item.location}</p>

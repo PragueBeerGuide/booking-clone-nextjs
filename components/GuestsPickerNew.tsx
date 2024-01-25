@@ -50,11 +50,20 @@ function GuestsPickerNew({control}:any) {
                     className="w-full h-12 lg:w-[300px] justify-start text-left font-normal hover:border-red-600"
                   >
                     <UserRoundIcon className="mr-3 h-5 w-5" />
-                    <span>{guests.adults} adults</span>
+                    <span>
+                      {guests.adults}
+                      {guests.adults === 1 ? " adult" : " adults"}
+                    </span>
                     <DotIcon />
-                    <span>{guests.children} {guests.children === 1 ? " child" : " children"}</span>
+                    <span>
+                      {guests.children}
+                      {guests.children === 1 ? " child" : " children"}
+                    </span>
                     <DotIcon />
-                    <span>{guests.rooms} rooms</span>
+                    <span>
+                      {guests.rooms}
+                      {guests.rooms === 1 ? " room" : " rooms"}
+                    </span>
                   </Button>
                 </FormControl>
               </PopoverTrigger>
@@ -90,8 +99,8 @@ function GuestsPickerNew({control}:any) {
                     <NumberPicker
                       title="Rooms"
                       name="rooms"
-                      defaultValue={0}
-                      min={0}
+                      defaultValue={1}
+                      min={1}
                       max={30}
                       value={guests.rooms}
                       sendDataToParent={handleGuestsChange}

@@ -80,6 +80,8 @@ function SearchForm() {
     router.push(`/search?url=${url.href}`);
   }
 
+  {console.log(form)}
+
   return (
     <Form {...form}>
       <form
@@ -103,7 +105,7 @@ function SearchForm() {
             </Button>
           </div>
         </div>
-
+         
       </form>
     </Form>
 
