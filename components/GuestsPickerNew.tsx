@@ -49,7 +49,7 @@ function GuestsPickerNew({control}:any) {
                     variant={"outline"}
                     className="w-full h-12 lg:w-[300px] justify-start text-left font-normal hover:border-red-600"
                   >
-                    <UserRoundIcon className="mr-3 h-4 w-4" />
+                    <UserRoundIcon className="mr-3 h-5 w-5" />
                     <span>{guests.adults} adults</span>
                     <DotIcon />
                     <span>{guests.children} {guests.children === 1 ? " child" : " children"}</span>
