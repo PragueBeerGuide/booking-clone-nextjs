@@ -30,31 +30,31 @@ function DatePicker({control}:any) {
                     variant={"outline"}
                     className="relative w-full h-12 lg:w-[300px] justify-start text-left font-normal hover:border-red-600"
                   >
-                    <span className="absolute bg-white right-4 lg:bottom-10 lg:left-10 z-10 border border-black rounded-md">
-                      <FormMessage className="text-black font-light px-3 py-1"/>
-                    </span>
-                    <CalendarIcon className="mr-3 h-5 w-5" />
-                    {field.value?.from ? (
-                      field.value?.to ? (
-                        <>
-                          {format(field.value?.from, "LLL dd, y")}
-                          <span className="px-2">—</span>
-                          {format(field.value?.to, "LLL dd, y")}
-                        </>
+                      <div className="absolute bg-white end-8 lg:bottom-10 lg:left-10 z-10 border rounded-md">
+                        <FormMessage className="text-black font-light px-3 py-1"/>
+                      </div>
+                      <CalendarIcon className="mr-3 h-5 w-5" />
+                      {field.value?.from ? (
+                        field.value?.to ? (
+                          <>
+                            {format(field.value?.from, "LLL dd, y")}
+                            <span className="px-2">—</span>
+                            {format(field.value?.to, "LLL dd, y")}
+                          </>
+                        ) : (
+                          <>
+                            {format(field.value?.from, "LLL dd, y")}
+                            <span className="px-2">—</span>
+                            <span>Check-out date</span>
+                          </>
+                        )
                       ) : (
-                        <>
-                          {format(field.value?.from, "LLL dd, y")}
+                        <div> 
+                          <span>Check-in date</span>
                           <span className="px-2">—</span>
                           <span>Check-out date</span>
-                        </>
-                      )
-                    ) : (
-                      <div> 
-                        <span>Check-in date</span>
-                        <span className="px-2">—</span>
-                        <span>Check-out date</span>
-                      </div>
-                    )}
+                        </div>
+                      )}
                   </Button>
                 </FormControl>
               </PopoverTrigger>

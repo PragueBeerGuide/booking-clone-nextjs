@@ -21,7 +21,16 @@ async function SearchPage({ searchParams }: Props) {
 
   const results = await fetchResults(searchParams);
 
-  if (!results) return <div>No results...</div>;
+  if (!results) return (
+    <div className="flex flex-col justify-center items-center p-10">
+      <div className="text-white mb-10"> No results for these search parameters...</div>
+      <Link href="/">
+        <div className="border rounded-md px-4 py-2 bg-white hover:bg-yellow-100">
+          <p className="text-blue-700">Try a new search</p>
+        </div>
+      </Link>
+    </div>
+  );
 
   return (
     <section className="bg-white">
