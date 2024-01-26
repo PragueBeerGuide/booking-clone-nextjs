@@ -21,8 +21,6 @@ function DatePicker({control}:any) {
         name="dates"
         render={({ field }) => (
           <FormItem className="flex flex-col">
-            <FormMessage />
-
             <Popover>
               <PopoverTrigger asChild>
                 <FormControl>
@@ -30,8 +28,11 @@ function DatePicker({control}:any) {
                     id="date"
                     name="dates"
                     variant={"outline"}
-                    className="w-full h-12 lg:w-[300px] justify-start text-left font-normal hover:border-red-600"
+                    className="relative w-full h-12 lg:w-[300px] justify-start text-left font-normal hover:border-red-600"
                   >
+                    <span className="absolute bg-white right-4 lg:bottom-10 lg:left-10 z-10 border border-black rounded-md">
+                      <FormMessage className="text-black font-light px-3 py-1"/>
+                    </span>
                     <CalendarIcon className="mr-3 h-5 w-5" />
                     {field.value?.from ? (
                       field.value?.to ? (

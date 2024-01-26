@@ -17,7 +17,7 @@ import GuestsPickerNew from "./GuestsPickerNew";
 
 export const formSchema = z.object({
   location: z.string().min(2, {
-    message: "Please type the name of your destination",
+    message: "Please type your destination",
   }).max(50, {
     message: "Maximum 50 characters allowed for search",
   }),

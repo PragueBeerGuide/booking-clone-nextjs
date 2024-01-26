@@ -12,7 +12,7 @@ export default function Home() {
         </h3>
       </section>
 
-      {/* SearchForm */}
+      {/* Main SearchForm component responsible for gathering all customer input and triggering the search */}
       <section className='-mb-[28px] px-2 sm:px-5 lg:px-4'>
         <SearchForm />
       </section>
