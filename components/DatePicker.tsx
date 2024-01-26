@@ -30,9 +30,8 @@ function DatePicker({control}:any) {
                     variant={"outline"}
                     className="relative w-full h-12 lg:w-[300px] justify-start text-left font-normal hover:border-red-600"
                   >
-                      <div className="absolute bg-white end-8 lg:bottom-10 lg:left-10 z-10 border rounded-md">
-                        <FormMessage className="text-black font-light px-3 py-1"/>
-                      </div>
+                      <FormMessage className="text-black font-light px-3 py-1 absolute bg-white end-8 lg:bottom-10 lg:left-10 z-10 border rounded-md"/>
+                      
                       <CalendarIcon className="mr-3 h-5 w-5" />
                       {field.value?.from ? (
                         field.value?.to ? (
